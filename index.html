@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Jungle Run</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="wrapper">
+  <canvas id="gc"></canvas>
+
+  <!-- START SCREEN -->
+  <div id="scr-start" class="screen active">
+    <div class="logo-block">
+      <div class="leaf-icon">🌿</div>
+      <h1 class="logo-title">JUNGLE<br>RUN</h1>
+      <p class="tagline">Outrun the ancient wilderness</p>
+    </div>
+    <button class="btn btn-gold" id="btn-start">▶ &nbsp;START GAME</button>
+    <div class="ctrl-hints">
+      <div class="hint"><kbd>↑</kbd><kbd>SPACE</kbd> Jump</div>
+      <div class="hint"><kbd>↓</kbd> Slide</div>
+      <div class="hint">🏃 Swipe on mobile</div>
+    </div>
+  </div>
+
+  <!-- CHARACTER SELECT -->
+  <div id="scr-select" class="screen">
+    <h2 class="scr-title">CHOOSE YOUR RUNNER</h2>
+    <div id="char-grid">
+
+      <div class="ccard" data-id="0">
+        <canvas class="cprev" width="96" height="116" id="prev0"></canvas>
+        <div class="cname">GRONK</div>
+        <div class="csub">Caveman Brute</div>
+        <div class="cbars">
+          <div class="crow"><span>STR</span><div class="bar"><div class="bfill" style="width:80%"></div></div></div>
+          <div class="crow"><span>AGI</span><div class="bar"><div class="bfill" style="width:55%"></div></div></div>
+          <div class="crow"><span>JMP</span><div class="bar"><div class="bfill" style="width:75%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="ccard" data-id="1">
+        <canvas class="cprev" width="96" height="116" id="prev1"></canvas>
+        <div class="cname">ZARA</div>
+        <div class="csub">Tribal Warrior</div>
+        <div class="cbars">
+          <div class="crow"><span>STR</span><div class="bar"><div class="bfill" style="width:45%"></div></div></div>
+          <div class="crow"><span>AGI</span><div class="bar"><div class="bfill" style="width:95%"></div></div></div>
+          <div class="crow"><span>JMP</span><div class="bar"><div class="bfill" style="width:65%"></div></div></div>
+        </div>
+      </div>
+
+      <div class="ccard" data-id="2">
+        <canvas class="cprev" width="96" height="116" id="prev2"></canvas>
+        <div class="cname">MIKO</div>
+        <div class="csub">Forest Shaman</div>
+        <div class="cbars">
+          <div class="crow"><span>STR</span><div class="bar"><div class="bfill" style="width:25%"></div></div></div>
+          <div class="crow"><span>AGI</span><div class="bar"><div class="bfill" style="width:80%"></div></div></div>
+          <div class="crow"><span>JMP</span><div class="bar"><div class="bfill" style="width:100%"></div></div></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="sel-btns">
+      <button class="btn btn-gold" id="btn-play" disabled>SELECT A CHARACTER</button>
+      <button class="btn btn-ghost" id="btn-back">← BACK</button>
+    </div>
+  </div>
+
+  <!-- HUD (during gameplay) -->
+  <div id="hud" class="hidden">
+    <div id="hud-score">SCORE &nbsp;<span id="v-score">0</span></div>
+    <div id="hud-speed">SPEED &nbsp;<span id="v-speed">1.0</span>×</div>
+  </div>
+
+  <!-- MOBILE TOUCH CONTROLS -->
+  <div id="mob-btns" class="hidden">
+    <button id="mb-jump">▲ JUMP</button>
+    <button id="mb-slide">▼ SLIDE</button>
+  </div>
+
+  <!-- GAME OVER -->
+  <div id="scr-over" class="screen">
+    <h2 class="over-title">💀 GAME OVER</h2>
+    <div class="score-panel">
+      <div class="score-lbl">SCORE</div>
+      <div class="score-big" id="ov-score">0</div>
+    </div>
+    <div class="score-panel small">
+      <div class="score-lbl">BEST</div>
+      <div class="score-med" id="ov-best">0</div>
+    </div>
+    <div class="over-btns">
+      <button class="btn btn-gold" id="btn-restart">↺ &nbsp;PLAY AGAIN</button>
+      <button class="btn btn-ghost" id="btn-menu">⌂ &nbsp;MENU</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/game.js"></script>
+</body>
+</html>

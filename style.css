@@ -1,0 +1,233 @@
+/* ═══════════════════════════════════════
+   JUNGLE RUN — style.css
+   Prehistoric jungle aesthetic
+   ═══════════════════════════════════════ */
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:    #050d04;
+  --panel: rgba(4,10,3,0.94);
+  --gold:  #F0C030;
+  --green: #4ABB38;
+  --dgreen:#1E6B0A;
+  --red:   #E53030;
+  --text:  #E4D8A8;
+  --dim:   #7A6A40;
+  --bdr:   #2A5A10;
+  --shadow:rgba(240,192,48,0.25);
+}
+
+html,body{
+  width:100%;height:100%;
+  background:var(--bg);
+  font-family:'Courier New',Courier,monospace;
+  overflow:hidden;
+  touch-action:none;
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* ── WRAPPER & CANVAS ─────────────────── */
+#wrapper{
+  position:relative;
+  width:100%;max-width:800px;
+  margin:0 auto;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+#gc{
+  display:block;
+  width:100%;
+  image-rendering:pixelated;
+  border:2px solid var(--bdr);
+  box-shadow:0 0 50px rgba(74,187,56,0.2),0 0 120px rgba(74,187,56,0.08);
+}
+
+/* ── SCREENS ──────────────────────────── */
+.screen{
+  position:absolute;
+  inset:0;
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:22px;
+  padding:24px 20px;
+  background:var(--panel);
+  color:var(--text);
+  z-index:20;
+  backdrop-filter:blur(2px);
+}
+.screen.active{display:flex}
+
+/* ── LOGO ─────────────────────────────── */
+.logo-block{text-align:center;line-height:1}
+.leaf-icon{font-size:2.8em;margin-bottom:4px;animation:sway 3s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+
+.logo-title{
+  font-size:clamp(2.6em,10vw,5em);
+  font-weight:900;
+  letter-spacing:0.12em;
+  color:var(--gold);
+  text-shadow:0 0 30px var(--shadow),3px 3px 0 #000,5px 5px 0 rgba(0,0,0,0.4);
+  line-height:0.9;
+}
+.tagline{
+  font-size:0.82em;
+  color:var(--dim);
+  letter-spacing:0.25em;
+  margin-top:10px;
+  text-transform:uppercase;
+}
+
+/* ── BUTTONS ──────────────────────────── */
+.btn{
+  padding:13px 38px;
+  font-size:1em;
+  font-family:'Courier New',monospace;
+  font-weight:bold;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  border:2px solid;
+  background:transparent;
+  cursor:pointer;
+  transition:all 0.12s;
+  position:relative;
+  overflow:hidden;
+}
+.btn::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:currentColor;
+  opacity:0;
+  transition:opacity 0.12s;
+}
+.btn:hover::after,.btn:active::after{opacity:0.12}
+
+.btn-gold{color:var(--gold);border-color:var(--gold)}
+.btn-gold:hover{background:var(--gold);color:#000;box-shadow:0 0 20px var(--shadow)}
+.btn-ghost{color:var(--dim);border-color:var(--bdr)}
+.btn-ghost:hover{border-color:var(--text);color:var(--text)}
+.btn:disabled{color:#444;border-color:#2a2a2a;cursor:not-allowed}
+.btn:disabled::after{display:none}
+
+/* ── CONTROL HINTS ────────────────────── */
+.ctrl-hints{
+  display:flex;gap:20px;flex-wrap:wrap;justify-content:center;
+  font-size:0.78em;color:var(--dim);
+}
+.hint{display:flex;align-items:center;gap:5px}
+kbd{
+  padding:2px 7px;
+  border:1px solid var(--bdr);
+  background:rgba(255,255,255,0.05);
+  font-family:inherit;font-size:0.9em;
+  border-radius:2px;
+}
+
+/* ── CHAR SELECT ──────────────────────── */
+.scr-title{
+  font-size:clamp(1em,4vw,1.6em);
+  color:var(--gold);
+  letter-spacing:0.3em;
+  text-transform:uppercase;
+}
+
+#char-grid{
+  display:flex;gap:14px;flex-wrap:wrap;justify-content:center;
+}
+
+.ccard{
+  border:2px solid var(--bdr);
+  padding:14px 12px;
+  cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;
+  gap:7px;min-width:110px;
+  background:rgba(0,0,0,0.5);
+  transition:border-color 0.15s,background 0.15s,transform 0.1s;
+}
+.ccard:hover{border-color:var(--gold);transform:translateY(-2px)}
+.ccard.selected{border-color:var(--gold);background:rgba(240,192,48,0.08)}
+
+.cprev{display:block}
+.cname{color:var(--gold);font-size:1.05em;font-weight:bold;letter-spacing:0.2em}
+.csub{color:var(--dim);font-size:0.72em}
+
+.cbars{width:100%;display:flex;flex-direction:column;gap:4px;margin-top:2px}
+.crow{display:flex;align-items:center;gap:5px;font-size:0.68em;color:var(--dim)}
+.crow span{width:26px;flex-shrink:0}
+.bar{flex:1;height:4px;background:#1a1a1a;border:1px solid #333}
+.bfill{height:100%;background:var(--green);transition:width 0.3s}
+.ccard.selected .bfill{background:var(--gold)}
+
+.sel-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+
+/* ── HUD ──────────────────────────────── */
+#hud{
+  position:absolute;
+  top:6px;left:0;right:0;
+  display:flex;justify-content:space-between;
+  padding:0 14px;
+  color:var(--gold);
+  font-size:0.85em;font-weight:bold;
+  letter-spacing:0.15em;
+  text-shadow:1px 1px 4px #000;
+  pointer-events:none;z-index:10;
+}
+#hud.hidden{display:none}
+#hud-terrain{color:#6FD460;font-size:0.82em}
+
+/* ── MOBILE BUTTONS ───────────────────── */
+#mob-btns{
+  position:absolute;
+  bottom:8px;left:0;right:0;
+  display:flex;justify-content:space-between;
+  padding:0 16px;z-index:10;
+}
+#mob-btns.hidden{display:none}
+#mob-btns button{
+  padding:12px 24px;
+  background:rgba(0,0,0,0.7);
+  color:var(--gold);
+  border:2px solid var(--gold);
+  font-family:'Courier New',monospace;
+  font-size:0.95em;font-weight:bold;
+  cursor:pointer;user-select:none;
+  -webkit-tap-highlight-color:transparent;
+  transition:background 0.1s;
+}
+#mob-btns button:active{background:rgba(240,192,48,0.2)}
+
+/* ── GAME OVER ────────────────────────── */
+.over-title{
+  font-size:clamp(1.5em,6vw,2.5em);
+  color:var(--red);
+  letter-spacing:0.2em;
+  text-shadow:0 0 20px rgba(229,48,48,0.5);
+  animation:flicker 1.5s ease-in-out infinite;
+}
+@keyframes flicker{0%,100%{opacity:1}50%{opacity:0.85}}
+
+.score-panel{text-align:center}
+.score-panel.small{opacity:0.75}
+.score-lbl{font-size:0.72em;letter-spacing:0.3em;color:var(--dim)}
+.score-big{font-size:clamp(2.5em,10vw,4em);color:var(--gold);font-weight:900;line-height:1;text-shadow:0 0 20px var(--shadow)}
+.score-med{font-size:clamp(1.5em,5vw,2em);color:var(--text);font-weight:bold;line-height:1.1}
+
+.over-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+
+/* ── UTILITY ──────────────────────────── */
+.hidden{display:none!important}
+
+/* ── RESPONSIVE ───────────────────────── */
+@media(max-width:520px){
+  .ctrl-hints{flex-direction:column;gap:8px}
+  #char-grid{gap:8px}
+  .ccard{min-width:88px;padding:10px 8px}
+  .cprev{width:76px!important;height:96px!important}
+}
